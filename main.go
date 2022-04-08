@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	request, error := http.Get("https://httpbin.org/get")
+	request, error := http.Get("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
 	if error != nil {
 		log.Fatalln(error)
 	}
