@@ -1,19 +1,23 @@
 package main
 
 import (
-	"fmt"
-	"io"
+	"io/ioutil"
 	"log"
 	"net/http"
 )
 
 func main() {
-	request, error := http.Get("http://date.jsonest.com/ll")
+	request, error := http.Get("https://httpbin.org/get")
 	if error != nil {
-		log.Fatal("Was not able to get request", error)
+		log.Fatalln(error)
 	}
-	defer request.Body.Close()
-	response, error := io.ReadAll(request.Body)
 
-	fmt.Printf(string(response))
+	defer request.Body.Close()
+
+	body, error := ioutil.ReadAll((request.Body))
+	if error != nil {
+		log.Fatalln(error)
+	}
+
+	log.Println(string(body))
 }
