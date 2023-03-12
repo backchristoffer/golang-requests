@@ -4,4 +4,4 @@ COPY . ./
 RUN go mod download
 RUN go version
 RUN go build -o /golang-requests
-CMD ["/golang-requests"]
+CMD ["/bin/bash golang-requests"]
