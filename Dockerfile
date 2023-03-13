@@ -1,9 +1,10 @@
-FROM golang:latest
+FROM golang:1.16-alpine
 WORKDIR /app
 COPY . ./
-ENV GOOS=linux
-ENV GOARCH=arm
+COPY go.mod .
+COPY go.sum .
 RUN go mod download
+COPY *.go .
 RUN go version
-RUN go build
-CMD ["/golang-requests"]
+RUN go build -o golang-requests
+CMD ["/app/golang-requests"]
